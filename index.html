@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./simple-flexible.js"></script>
+    <title>简易rem适应</title>
+    <!-- 尺寸布局为iPhone5尺寸下量的px除以100 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .f-10 {
+            font-size: 0.1rem;
+        }
+
+        .f-12 {
+            font-size: 0.12rem;
+        }
+
+        .f-14 {
+            font-size: 0.14rem;
+        }
+
+        .f-16,
+        .f-16 {
+            font-size: 0.16rem;
+        }
+
+        .f-18 {
+            font-size: 0.18rem;
+        }
+
+        .f-20 {
+            font-size: 0.2rem;
+        }
+
+        #__bs_notify__ {
+            font-size: 0.16rem !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <p class="f-16">以下是iPhone5下固定的文字尺寸：</p>
+        <p class="f f-10">测试文字f-10</p>
+        <p class="f f-12">测试文字f-12</p>
+        <p class="f f-14">测试文字f-14</p>
+        <p class="f f-16">测试文字f-16</p>
+        <p class="f f-18">测试文字f-18</p>
+        <p class="f f-20">测试文字f-20</p>
+    </div>
+    <p class="f-16" style="margin-top: 0.2rem">以下是该浏览器下对应尺寸的真实文字大小：</p>
+    <div class="information"></div>
+    <script>
+        (function (win) {
+            function loadFontInformation() {
+                var fonts = document.getElementsByClassName('f')
+                var information = document.getElementsByClassName('information')
+                var ret = {}
+                var html = ''
+
+                function getFontSize(el) {
+                    return win.getComputedStyle(el).fontSize
+                }
+
+                for (var i = 0; i < fonts.length; i++) {
+                    ret[fonts[i].classList[1]] = getFontSize(fonts[i])
+                }
+
+                for (var key in ret) {
+                    html += `<p style="color:red;font-size:0.16rem;">${key}: ${ret[key]}</p>`
+                }
+
+                information[0].innerHTML = html
+            }
+
+            win.addEventListener('load', loadFontInformation, false)
+        })(window);
+    </script>
+</body>
+
+</html>
