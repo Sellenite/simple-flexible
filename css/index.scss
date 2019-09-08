@@ -1,0 +1,12 @@
+@import 'mixin';
+
+// 设置body的字体最小值，其他元素不设定字体大小时均继承自这个数值
+body {
+	font-size: px2rem(24px);
+}
+
+#app {
+	.line {
+		font-size: px2rem(30px);
+	}
+}
